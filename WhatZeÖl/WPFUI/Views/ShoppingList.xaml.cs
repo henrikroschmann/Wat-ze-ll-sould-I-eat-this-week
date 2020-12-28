@@ -22,8 +22,6 @@ namespace WPFUI.Views
                 test = test.Union(item.Ingredient).ToList();
             }
 
-
-
             List<User> items = new List<User>();
             items.Add(new User() { Name = "John Doe", Age = 42, Sex = SexType.Male });
             items.Add(new User() { Name = "Jane Doe", Age = 39, Sex = SexType.Female });
