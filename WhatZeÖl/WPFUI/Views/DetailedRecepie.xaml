@@ -1,0 +1,63 @@
+﻿<Window x:Class="WhatZeÖl.Views.DetailedRecepie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WhatZeÖl.Views"
+        mc:Ignorable="d"
+        Title="DetailedRecepie" Height="1000" Width="1000">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="Title" Grid.Column="1" Grid.Row="1" FontSize="30"></TextBlock>
+            <TextBlock x:Name="ShortDescription" Grid.Column="1" Grid.Row="2" FontStyle="Italic" FontSize="15"></TextBlock>
+            <Image x:Name="rc_Image" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"></Image>
+
+            <!-- Ingredients -->
+            <StackPanel Grid.Row="3" Grid.Column="1">
+                <TextBlock FontSize="20" Margin="5,20,0,10">Ingredients</TextBlock>
+                <ListView Name="Ingredients"  Width="460">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Amount" Width="100" DisplayMemberBinding="{Binding Amount}" />
+                            <GridViewColumn Header="Ingredient" Width="200" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Category" Width="150" DisplayMemberBinding="{Binding Category}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
+            <!-- Instructions -->
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                <TextBlock FontSize="20" Margin="5,20,0,10">Instructions</TextBlock>
+                <ListView Name="Instructions">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image}"></Image>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Step}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>
