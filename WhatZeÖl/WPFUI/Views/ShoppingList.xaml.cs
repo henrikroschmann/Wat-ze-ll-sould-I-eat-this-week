@@ -15,35 +15,18 @@ namespace WPFUI.Views
         {
             InitializeComponent();
 
-            List<Ingredient> test = new List<Ingredient>();
+            List<Ingredient> Ingredients = new List<Ingredient>();
 
             foreach (var item in selectedRecepies.Recipes)
             {
-                test = test.Union(item.Ingredient).ToList();
+                Ingredients = Ingredients.Union(item.Ingredient).ToList();
             }
 
-            List<User> items = new List<User>();
-            items.Add(new User() { Name = "John Doe", Age = 42, Sex = SexType.Male });
-            items.Add(new User() { Name = "Jane Doe", Age = 39, Sex = SexType.Female });
-            items.Add(new User() { Name = "Sammy Doe", Age = 13, Sex = SexType.Male });
-            lvUsers.ItemsSource = items;
+            lvIngredients.ItemsSource = Ingredients;
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Sex");
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvIngredients.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
             view.GroupDescriptions.Add(groupDescription);
         }
-    }
-
-    public enum SexType { Male, Female };
-
-    public class User
-    {
-        public string Name { get; set; }
-
-        public int Age { get; set; }
-
-        public string Mail { get; set; }
-
-        public SexType Sex { get; set; }
     }
 }

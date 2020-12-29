@@ -7,19 +7,19 @@ namespace WhatZeÖl.Views
     /// </summary>
     public partial class DetailedRecepie : Window
     {
-        public Models.Recipe recipe { get; set; } = new Models.Recipe();
+        public Models.Recipe Recipe { get; set; } = new Models.Recipe();
 
         public DetailedRecepie(Models.Recipe _recipe)
         {
             InitializeComponent();
 
-            this.recipe = _recipe;
-            Title.Text = this.recipe.Name;
-            ShortDescription.Text = this.recipe.ShortDescription;
-            rc_Image.Source = this.recipe.Image;
+            this.Recipe = _recipe;
+            tbTitle.Text = this.Recipe.Name;
+            ShortDescription.Text = this.Recipe.ShortDescription;
+            rc_Image.Source = this.Recipe.Image;
 
-            Ingredients.ItemsSource = this.recipe.Ingredient;
-            Instructions.ItemsSource = this.recipe.Instructions;
+            Ingredients.ItemsSource = this.Recipe.Ingredient;
+            Instructions.ItemsSource = this.Recipe.Instructions;
         }
     }
 }
