@@ -11,22 +11,27 @@ namespace WPFUI.Views
     /// </summary>
     public partial class ShoppingList : Window
     {
+        /// <summary>
+        /// Parse the selected menu list and display shopping list categorized.
+        /// </summary>
+        /// <param name="selectedRecepies"></param>
         public ShoppingList(WhatZeÖl.Models.CookBook selectedRecepies)
         {
             InitializeComponent();
 
-            List<Ingredient> Ingredients = new List<Ingredient>();
+            List<Ingredient> IngredientList = new List<Ingredient>();
 
             foreach (var item in selectedRecepies.Recipes)
             {
-                Ingredients = Ingredients.Union(item.Ingredient).ToList();
+                IngredientList = IngredientList.Union(item.Ingredient).ToList();
             }
 
-            lvIngredients.ItemsSource = Ingredients;
+            lvUsers.ItemsSource = IngredientList;
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvIngredients.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
             view.GroupDescriptions.Add(groupDescription);
         }
     }
+
 }
