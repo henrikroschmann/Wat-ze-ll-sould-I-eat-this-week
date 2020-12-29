@@ -115,6 +115,13 @@ namespace WhatZeÖl.Http
                     .Where(node => node.GetAttributeValue("class", "")
                     .Contains("dsf dsg dsh")).ToList();
 
+                if (ingredients.Count == 0)
+                {
+                    ingredients = ingreds.DocumentNode.Descendants("div")
+                    .Where(node => node.GetAttributeValue("class", "")
+                    .Contains("dsan dsab dsao")).ToList();
+                }
+
                 foreach (var ingredient in ingredients)
                 {
                     try

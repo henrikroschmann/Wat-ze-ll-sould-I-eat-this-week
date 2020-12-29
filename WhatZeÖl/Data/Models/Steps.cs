@@ -6,5 +6,11 @@ namespace WhatZeÖl.Models
     {
         public string Step { get; set; } = string.Empty;
         public ImageSource Image { get; set; }
+
+        public string StepWithoutNumber {
+            get {
+                return Step.Remove(0, 2);
+            }
+        }
     }
 }

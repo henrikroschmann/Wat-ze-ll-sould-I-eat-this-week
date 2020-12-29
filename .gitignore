@@ -348,4 +348,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+<<<<<<< HEAD
+/WhatZeÖl/WPFUIv2.zip
+=======
 /WhatZeÖl/WhatZeÖl.zip
+>>>>>>> main

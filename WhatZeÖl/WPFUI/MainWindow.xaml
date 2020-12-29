@@ -5,9 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFUI"
         mc:Ignorable="d"
-        Title="What ze öl" Height="1000" Width="1200">
+        Title="What ze öl" Height="1000" Width="1000"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid ShowGridLines="True">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
@@ -21,48 +29,149 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
-            <!-- Button to parse recipies -->
-            <Button x:Name="ParseRecipies" Grid.Row="1" Grid.Column="1" Margin="10" Click="ParseRecipies_ClickAsync" />
+            <materialDesign:Badged Name="ShopplingListBadge" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 0 20"
+                Badge="0">
+                <Button
+                    x:Name="GenerateShoppingList"
+                    Click="GenerateShoppingList_Click"
+                    Width="120"
+                    Content="Shopping list" />
+            </materialDesign:Badged>
 
-            <TextBlock Width="270" TextAlignment="Center" TextWrapping="Wrap" x:Name="AppInstructions" Grid.Row="2" Grid.Column="1">
-                Read the instructions before using the application
-                1. Click on the button parse recipes to retrieve a list of recipes for the week.
+            <materialDesign:Card
+                        x:Name="CardIntro"
+                        Width="500"
+                        Margin="8 2 4 16"
+                        Height="320"
+                Grid.Column="1" Grid.Row="2">
+                <Grid VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                2. You can see the details by clicking on each recipe.
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                3. You select the recipes by ticking the box on each recipe.
+                    <materialDesign:PackIcon
+                                Kind="ChefHat"
+                                Width="160"
+                                Height="160"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
 
-                4. Once done click on generate shopping list and the ingredients will be categorized for you.
-            </TextBlock>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Margin="16 16 16 8"
+                                    Text="What ze öl" />
 
-            <ItemsControl Grid.Row="2" Grid.Column="1"  x:Name="recepiesThisWeek">
+                        <TextBlock
+                                    TextWrapping="Wrap"
+                                    Margin="16 0 16 8"
+                                    Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                    VerticalAlignment="Top"
+                                    Text="This project is supposed to make your choice of what to eat this week easier. The process is simple, click on the fetch recipes button down below and we will start fetching some tasty recipes in the background."
+                            FontWeight="Bold"
+                            />
+                        <TextBlock
+                                    TextWrapping="Wrap"
+                                    Margin="16 0 16 8"
+                                    Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                    VerticalAlignment="Top"
+                                    Text="Once you have the delicious recipes at your service you will be able to get detailed instructions on how to prepare the meals and also select a few of them to generate the shopping list." />
+                        <TextBlock
+                                    TextWrapping="Wrap"
+                                    Margin="16 0 16 8"
+                                    Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                    VerticalAlignment="Top"
+                                    Text="Let's get started, click on fetch recipes and wait for the chef to prepare your courses." />
+                        <Button
+                            x:Name="btShowMeTheMenu"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Content="Show me the menu!" Margin="2,10"
+                            Click="ParseRecipies_ClickAsync"
+                            Width="180" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <ItemsControl Grid.Row="2" Grid.Column="1" x:Name="recepiesThisWeek">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="3" />
+                        <UniformGrid Columns="4" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid ShowGridLines="True">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="100" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Margin="10">
-                                <Image Source="{Binding Image}"></Image>
-                                <TextBlock Text="{Binding Name}" />
-                                <TextBlock Text="{Binding ShortDescription}" />
-                                <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" ></CheckBox>
-                                <TextBlock Text="Double click here for details ->>" MouseDown="RecipieDetails_MouseDown" />
-                            </StackPanel>
-                        </Grid>
+                        <materialDesign:Card x:Name="CardIntro" Width="200" Margin="8 2 4 16">
+                            <Grid VerticalAlignment="Stretch">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="140" />
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="60" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                      Source="{Binding Image}"
+                                      Height="140"
+                                      Width="196"
+                                      Stretch="UniformToFill" />
+                                <materialDesign:Flipper
+                                    Grid.Row="0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom"
+                                  Margin="0 10 0 -20"
+                                      Style="{StaticResource MaterialDesignCardFlipper}">
+                                    <materialDesign:Flipper.FrontContent>
+                                        <Button
+                                              Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Bottom"
+                                              Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                            Click="CheckBox_Checked"
+                                            Margin="8">
+                                            <materialDesign:PackIcon
+                                            Kind="Add"/>
+                                        </Button>
+                                    </materialDesign:Flipper.FrontContent>
+                                    <materialDesign:Flipper.BackContent>
+                                        <Button
+                                              Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                              Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                            Click="CheckBox_Unchecked"
+                                            Margin="8">
+                                            <materialDesign:PackIcon
+                                            Kind="Remove"/>
+                                        </Button>
+                                    </materialDesign:Flipper.BackContent>
+
+                                </materialDesign:Flipper>
+
+                                <StackPanel Grid.Column=    "1" Grid.Row="1" Margin="5,25,5,5">
+                                    <TextBlock Text="{Binding Name}" FontSize="18" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap" Margin="0,5,0,0" />
+                                </StackPanel>
+                                <Button
+                                    Grid.Row="2"
+                                        Name="LearnMore"
+                                          Style="{StaticResource MaterialDesignOutlinedButton}"
+                                          ToolTip="MaterialDesignOutlinedButton"
+                                          Width="120"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,10,10,10"
+                                          Content="LEARN MORE"
+                                        Click="LearnMore_Click" />
+                            </Grid>
+                        </materialDesign:Card>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button x:Name="GenerateShoppingList" Grid.Row="4" Grid.Column="1" Margin="10" Click="GenerateShoppingList_Click" />
         </Grid>
     </ScrollViewer>
 </Window>
