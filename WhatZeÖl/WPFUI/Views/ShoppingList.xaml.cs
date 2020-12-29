@@ -19,6 +19,7 @@ namespace WPFUI.Views
         {
             InitializeComponent();
 
+<<<<<<< HEAD
             List<Ingredient> IngredientList = new List<Ingredient>();
 
             foreach (var item in selectedRecepies.Recipes)
@@ -29,9 +30,24 @@ namespace WPFUI.Views
             lvUsers.ItemsSource = IngredientList;
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
+=======
+            List<Ingredient> Ingredients = new List<Ingredient>();
+
+            foreach (var item in selectedRecepies.Recipes)
+            {
+                Ingredients = Ingredients.Union(item.Ingredient).ToList();
+            }
+
+            lvIngredients.ItemsSource = Ingredients;
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvIngredients.ItemsSource);
+>>>>>>> main
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
             view.GroupDescriptions.Add(groupDescription);
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 }

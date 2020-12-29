@@ -6,8 +6,8 @@ namespace WhatZeÖl.Helpers
     public static class ParseText
     {
         /// <summary>
-        /// Method is used to extract parts of string based on start and stop condiction 
-        /// these are input paraters. 
+        /// Method is used to extract parts of string based on start and stop condiction
+        /// these are input paraters.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
@@ -22,7 +22,7 @@ namespace WhatZeÖl.Helpers
         }
 
         /// <summary>
-        /// When extracting the instructions from the recipie space is missing between step and text. 
+        /// When extracting the instructions from the recipie space is missing between step and text.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>

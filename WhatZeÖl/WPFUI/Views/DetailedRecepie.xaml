@@ -22,7 +22,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="Title" Grid.Column="1" Grid.Row="1" FontSize="30"></TextBlock>
+            <TextBlock x:Name="tbTitle" Grid.Column="1" Grid.Row="1" FontSize="30"></TextBlock>
             <TextBlock x:Name="ShortDescription" Grid.Column="1" Grid.Row="2" FontStyle="Italic" FontSize="15"></TextBlock>
             <Image x:Name="rc_Image" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"></Image>
 
