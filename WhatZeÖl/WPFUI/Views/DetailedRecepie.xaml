@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhatZeÖl.Views"
         mc:Ignorable="d"
-        Title="DetailedRecepie" Height="1000" Width="1000">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        Title="DetailedRecepie" Height="1000" Width="1050">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
@@ -26,13 +26,16 @@
             <TextBlock x:Name="ShortDescription" Grid.Column="1" Grid.Row="2" FontStyle="Italic" FontSize="15"></TextBlock>
             <Image x:Name="rc_Image" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"></Image>
 
+            <Button x:Name="CloseForm" Grid.Row="1" Grid.Column="2" Width="80" HorizontalAlignment="Right" Click="CloseForm_Click">Close</Button>
+
             <!-- Ingredients -->
             <StackPanel Grid.Row="3" Grid.Column="1">
-                <TextBlock FontSize="20" Margin="5,20,0,10">Ingredients</TextBlock>
-                <ListView Name="Ingredients"  Width="460">
+                <TextBlock FontSize="18" Margin="5,20,0,0">Ingredients</TextBlock>
+                <TextBlock FontSize="12" Margin="10,0,0,10" FontStyle="Italic">*ingredients not categorized will display as NoCategoryFound</TextBlock>
+                <ListView Name="Ingredients"  Width="auto">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Amount" Width="100" DisplayMemberBinding="{Binding Amount}" />
+                            <GridViewColumn Header="Amount" Width="120" DisplayMemberBinding="{Binding Amount}"/>
                             <GridViewColumn Header="Ingredient" Width="200" DisplayMemberBinding="{Binding Name}" />
                             <GridViewColumn Header="Category" Width="150" DisplayMemberBinding="{Binding Category}" />
                         </GridView>
@@ -53,7 +56,21 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Step}" />
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition
+                                                    Width="40"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Step[0]}" TextWrapping="Wrap" Width="500" FontSize="40"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding StepWithoutNumber}" TextWrapping="Wrap" Width="500"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

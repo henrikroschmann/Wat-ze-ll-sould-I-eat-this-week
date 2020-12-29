@@ -9,6 +9,10 @@ namespace WhatZeÖl.Views
     {
         public Models.Recipe recipe { get; set; } = new Models.Recipe();
 
+        /// <summary>
+        /// Data source to Binding mapping.
+        /// </summary>
+        /// <param name="_recipe"></param>
         public DetailedRecepie(Models.Recipe _recipe)
         {
             InitializeComponent();
@@ -17,9 +21,12 @@ namespace WhatZeÖl.Views
             Title.Text = this.recipe.Name;
             ShortDescription.Text = this.recipe.ShortDescription;
             rc_Image.Source = this.recipe.Image;
-
             Ingredients.ItemsSource = this.recipe.Ingredient;
             Instructions.ItemsSource = this.recipe.Instructions;
+        }
+        private void CloseForm_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

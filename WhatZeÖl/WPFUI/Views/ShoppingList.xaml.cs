@@ -11,39 +11,27 @@ namespace WPFUI.Views
     /// </summary>
     public partial class ShoppingList : Window
     {
+        /// <summary>
+        /// Parse the selected menu list and display shopping list categorized.
+        /// </summary>
+        /// <param name="selectedRecepies"></param>
         public ShoppingList(WhatZeÖl.Models.CookBook selectedRecepies)
         {
             InitializeComponent();
 
-            List<Ingredient> test = new List<Ingredient>();
+            List<Ingredient> IngredientList = new List<Ingredient>();
 
             foreach (var item in selectedRecepies.Recipes)
             {
-                test = test.Union(item.Ingredient).ToList();
+                IngredientList = IngredientList.Union(item.Ingredient).ToList();
             }
 
-            List<User> items = new List<User>();
-            items.Add(new User() { Name = "John Doe", Age = 42, Sex = SexType.Male });
-            items.Add(new User() { Name = "Jane Doe", Age = 39, Sex = SexType.Female });
-            items.Add(new User() { Name = "Sammy Doe", Age = 13, Sex = SexType.Male });
-            lvUsers.ItemsSource = items;
+            lvUsers.ItemsSource = IngredientList;
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Sex");
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
             view.GroupDescriptions.Add(groupDescription);
         }
     }
 
-    public enum SexType { Male, Female };
-
-    public class User
-    {
-        public string Name { get; set; }
-
-        public int Age { get; set; }
-
-        public string Mail { get; set; }
-
-        public SexType Sex { get; set; }
-    }
 }
