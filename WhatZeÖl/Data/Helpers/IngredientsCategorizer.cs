@@ -5,6 +5,12 @@ namespace WhatZeÖl.Helpers
 {
     public static class IngredientsCategorizer
     {
+        /// <summary>
+        /// Simple Ingredient cartegorizer. All ingredients will be valided in this method
+        /// and mapped in the dictionary list to get the key (the category)
+        /// </summary>
+        /// <param name="ingredient"></param>
+        /// <returns></returns>
         public static IngredientCategory CategorizeIngredients(string ingredient)
         {
             var categorizer = new Dictionary<IngredientCategory, List<string>> {

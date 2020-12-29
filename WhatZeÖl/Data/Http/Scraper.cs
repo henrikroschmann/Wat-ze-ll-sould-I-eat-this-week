@@ -76,6 +76,11 @@ namespace WhatZeÖl.Http
             return cookBook;
         }
 
+        /// <summary>
+        /// Method will run in seperate thread to complete the extraction of details for the recipies
+        /// </summary>
+        /// <param name="cookBook"></param>
+        /// <returns></returns>
         public async Task<CookBook> ScrapeWebSiteForDetails(CookBook cookBook)
         {
             var i_name = new List<string>();

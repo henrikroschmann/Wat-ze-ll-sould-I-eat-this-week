@@ -13,10 +13,5 @@ namespace WhatZeÖl.Models
         public string Description { get; set; } = string.Empty;
         public string ArticleLink { get; set; }
         public List<Ingredient> Ingredient { get; set; } = new List<Ingredient>();
-
-        public override string ToString()
-        {
-            return this.Name + ", " + this.ShortDescription;
-        }
     }
 }
