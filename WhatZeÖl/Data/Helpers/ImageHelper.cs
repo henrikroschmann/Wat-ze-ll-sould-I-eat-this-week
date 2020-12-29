@@ -7,6 +7,13 @@ namespace WhatZeÖl.Helpers
 {
     public static class ImageHelper
     {
+        /// <summary>
+        /// Helper method to transform url to bitmap ImageSource to display in WPF 
+        /// based on https://stackoverflow.com/questions/3148163/wpf-image-urisource-and-data-binding-using-http-url
+        /// forced to add image.Freeze to not encounter threading issues.
+        /// </summary>
+        /// <param name="imgSrc"></param>
+        /// <returns></returns>
         public static BitmapImage GetImage(string imgSrc)
         {
             var image = new BitmapImage();
